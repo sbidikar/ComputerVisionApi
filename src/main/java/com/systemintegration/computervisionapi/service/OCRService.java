@@ -17,7 +17,8 @@ import java.util.UUID;
 @Service
 public class OCRService {
 
-    static String subscriptionKey = "467d3d353dfd4fffbf74b1c1931a658d";
+    @Value("${subscriptionKey}")
+    private String subscriptionKey;
     @Value("${computervision.endpoint}")
     private String endpoint;
 
