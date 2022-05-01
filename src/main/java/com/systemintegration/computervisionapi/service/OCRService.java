@@ -5,10 +5,12 @@ import com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisio
 import com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionManager;
 import com.microsoft.azure.cognitiveservices.vision.computervision.implementation.ComputerVisionImpl;
 import com.microsoft.azure.cognitiveservices.vision.computervision.models.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -19,12 +21,12 @@ public class OCRService {
     @Value("${computervision.endpoint}")
     private String endpoint;
 
-    public ResponseEntity ocr(String imagePath){
+    public ResponseEntity ocr(String imagePath, MultipartFile file){
         // Create an authenticated Computer Vision client.
         ComputerVisionClient compVisClient = Authenticate(subscriptionKey, endpoint);
 
         // Read from remote image
-        return ReadFromUrl(compVisClient, imagePath);
+        return ReadFromUrl(compVisClient, imagePath, file);
     }
 
     public static ComputerVisionClient Authenticate(String subscriptionKey, String endpoint){
@@ -36,8 +38,7 @@ public class OCRService {
      * @param client instantiated vision client
      * @param imagePath
      */
-    private ResponseEntity ReadFromUrl(ComputerVisionClient client, String imagePath) {
-        System.out.println("-----------------------------------------------");
+    private ResponseEntity ReadFromUrl(ComputerVisionClient client, String imagePath, MultipartFile file) {
 
         //String remoteTextImageURL = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/printed_text.jpg";
         System.out.println("Read with URL: " + imagePath);
@@ -45,15 +46,26 @@ public class OCRService {
         try {
             // Cast Computer Vision to its implementation to expose the required methods
             ComputerVisionImpl vision = (ComputerVisionImpl) client.computerVision();
+            String operationLocation = null;
 
-            // Read in remote image and response header
-            ReadHeaders responseHeader = vision.readWithServiceResponseAsync(imagePath, null)
-                    .toBlocking()
-                    .single()
-                    .headers();
+            if(StringUtils.isEmpty(imagePath)){
+                ReadInStreamHeaders readInStreamHeaders = vision.readInStreamWithServiceResponseAsync(file.getBytes(),null)
+                        .toBlocking()
+                        .single()
+                        .headers();
+                operationLocation = readInStreamHeaders.operationLocation();
+            }
+            else{
+                // Read in remote image and response header
+                ReadHeaders responseHeader = vision.readWithServiceResponseAsync(imagePath, null)
+                        .toBlocking()
+                        .single()
+                        .headers();
 
-            // Extract the operation Id from the operationLocation header
-            String operationLocation = responseHeader.operationLocation();
+                // Extract the operation Id from the operationLocation header
+                operationLocation = responseHeader.operationLocation();
+            }
+
             System.out.println("Operation Location:" + operationLocation);
 
             String result = getResult(vision, operationLocation);

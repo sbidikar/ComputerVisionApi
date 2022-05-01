@@ -77,4 +77,11 @@ Please adhere to this project's `code of conduct`.
 
 If you have any feedback, please reach out to us at sbidikar@uncc.edu
 
+## 🚀 About Me
+I'm a full stack Software Engineer at Lowe's Inc with 9+ years of Software Industry experience.
+
+## 🔗 Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/siddharth-bidikar/)
+
+
 

@@ -5,9 +5,11 @@ import com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisio
 import com.microsoft.azure.cognitiveservices.vision.computervision.models.ImageAnalysis;
 import com.microsoft.azure.cognitiveservices.vision.computervision.models.ImageTag;
 import com.microsoft.azure.cognitiveservices.vision.computervision.models.VisualFeatureTypes;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +21,12 @@ public class ImageAnalysisService {
     @Value("${computervision.endpoint}")
     private String endpoint;
 
-    public ResponseEntity imageAnalysis(String imagePath){
+    public ResponseEntity  imageAnalysis(String imagePath, MultipartFile imageFile){
         // Create an authenticated Computer Vision client.
         ComputerVisionClient compVisClient = Authenticate(subscriptionKey, endpoint);
 
         // Analyze local and remote images
-        return analyzeRemoteImage(compVisClient, imagePath);
+        return analyzeRemoteImage(compVisClient, imagePath, imageFile);
     }
 
     public ComputerVisionClient Authenticate(String subscriptionKey, String endpoint){
@@ -32,7 +34,7 @@ public class ImageAnalysisService {
     }
 
 
-    public ResponseEntity analyzeRemoteImage(ComputerVisionClient compVisClient, String imagePath) {
+    public ResponseEntity analyzeRemoteImage(ComputerVisionClient compVisClient, String imagePath, MultipartFile imageFile) {
         /*
          * Analyze an image from a URL:
          *
@@ -43,15 +45,19 @@ public class ImageAnalysisService {
         // This list defines the features to be extracted from the image.
         List<VisualFeatureTypes> featuresToExtractFromRemoteImage = new ArrayList<>();
         featuresToExtractFromRemoteImage.add(VisualFeatureTypes.TAGS);
-
-        System.out.println("\n\nAnalyzing an image from a URL ...");
+        ImageAnalysis analysis;
 
         try {
-            // Call the Computer Vision service and tell it to analyze the loaded image.
-            ImageAnalysis analysis = compVisClient.computerVision().analyzeImage().withUrl(imagePath)
-                    .withVisualFeatures(featuresToExtractFromRemoteImage).execute();
+            if(StringUtils.isAllEmpty(imagePath)){
+                analysis = compVisClient.computerVision().analyzeImageInStream().withImage(imageFile.getBytes())
+                        .withVisualFeatures(featuresToExtractFromRemoteImage).execute();
+            }
+            else{
+                // Call the Computer Vision service and tell it to analyze the loaded image.
+                analysis = compVisClient.computerVision().analyzeImage().withUrl(imagePath)
+                        .withVisualFeatures(featuresToExtractFromRemoteImage).execute();
 
-
+            }
             // Display image tags and confidence values.
             System.out.println("\nTags: ");
             for (ImageTag tag : analysis.tags()) {
