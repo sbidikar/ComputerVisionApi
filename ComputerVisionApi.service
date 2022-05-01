@@ -1,0 +1,2 @@
+User=root
+ExecStart=java -jar ComputerVisionApi-0.0.1.jar
