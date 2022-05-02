@@ -17,7 +17,7 @@ The Computer Vision Image Analysis service can extract a wide variety of visual 
 - The dimensions of the image must be greater than 50 x 50 pixels
 
 ## Architecture Diagram:
-![Architecture](images/ComputerVisionArchitecture.png)
+![Architecture](images/ComputerVisionArchitecture.png) <br />
 
 ##Application Tech Stack
 - JAVA
@@ -25,7 +25,14 @@ The Computer Vision Image Analysis service can extract a wide variety of visual 
 - Gradle
 
 ## Application Swagger link
-[Computer Vision Api Swagger link](http://137.184.143.79:8080/computer-vision-api/swagger-ui/index.html)
+[Computer Vision Api Swagger link](http://137.184.143.79:8080/computer-vision-api/swagger-ui/index.html) <br />
+
+<details>
+  <summary>Click to expand!</summary>
+
+![swagger page](images/img.png)
+
+</details>
 
 ## API Reference
 #### Get Optical character recognition for Image
