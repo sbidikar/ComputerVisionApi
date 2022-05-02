@@ -1,7 +1,8 @@
 <h1 align="center">Computer Vision Api</h1>
 
 <h2 align="center">About The Application</h2>
-This application provides api for Optical character recognition (OCR) and Image Analysis.
+This application provides api for Optical character recognition (OCR) and Image Analysis.<br />
+
 ### OCR Overview
 Optical character recognition (OCR) allows you to extract printed or handwritten text from images, such as photos of street signs and products, as well as from documents—invoices, bills, financial reports, articles, and more.<br />
 [Additional Resource](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/overview-ocr)
@@ -10,7 +11,12 @@ Optical character recognition (OCR) allows you to extract printed or handwritten
 The Computer Vision Image Analysis service can extract a wide variety of visual features from your images. For example, it can determine whether an image contains adult content, find specific brands or objects, or find human faces.<br />
 [Additional Resource](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/overview-image-analysis)
 
-## Architecure:
+### Image requirements
+- The image must be presented in JPEG, PNG, GIF, or BMP format
+- The file size of the image must be less than 4 megabytes (MB)
+- The dimensions of the image must be greater than 50 x 50 pixels
+
+## Architecture Diagram:
 ![Architecture](images/ComputerVisionArchitecture.png)
 
 ##Application Tech Stack
