@@ -45,7 +45,13 @@ public class ImageAnalysisService {
 
         // This list defines the features to be extracted from the image.
         List<VisualFeatureTypes> featuresToExtractFromRemoteImage = new ArrayList<>();
+        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.DESCRIPTION);
+        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.CATEGORIES);
         featuresToExtractFromRemoteImage.add(VisualFeatureTypes.TAGS);
+        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.FACES);
+        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.ADULT);
+        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.COLOR);
+        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.IMAGE_TYPE);
         ImageAnalysis analysis;
 
         try {
@@ -64,7 +70,7 @@ public class ImageAnalysisService {
             for (ImageTag tag : analysis.tags()) {
                 System.out.printf("\'%s\' with confidence %f\n", tag.name(), tag.confidence());
             }
-            return ResponseEntity.ok(analysis.tags());
+            return ResponseEntity.ok(analysis);
         }
 
         catch (Exception e) {
