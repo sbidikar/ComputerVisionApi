@@ -10,6 +10,9 @@ Optical character recognition (OCR) allows you to extract printed or handwritten
 The Computer Vision Image Analysis service can extract a wide variety of visual features from your images. For example, it can determine whether an image contains adult content, find specific brands or objects, or find human faces.<br />
 [Additional Resource](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/overview-image-analysis)
 
+## Architecure:
+![Architecture](images/ComputerVisionArchitecture.png)
+
 ##Application Tech Stack
 - JAVA
 - Spring Boot
