@@ -20,7 +20,8 @@ The Computer Vision Image Analysis service can extract a wide variety of visual 
 ![Architecture](images/ComputerVisionArchitecture.png) <br />
 
 -------------------------------------------------------------------
-##Application Tech Stack
+
+## Application Tech Stack
 - JAVA
 - Spring Boot
 - Gradle
