@@ -39,6 +39,22 @@ The Computer Vision Image Analysis service can extract a wide variety of visual 
 | :-------- | :------- | :------------------------- |
 | `imagePath` | `string` | **Required**. Your Image Path |
 
+```http
+  POST /computer-vision-api/analyzeOCRUpload
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `file` | `file` | **Required**. Your Image File |
+
+```http
+  POST /computer-vision-api/analyzeImageWithUpload
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `file` | `file` | **Required**. Your Image File |
+
 ## Run Locally
 Clone the project
 ```bash
