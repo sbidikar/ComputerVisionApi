@@ -19,20 +19,11 @@ The Computer Vision Image Analysis service can extract a wide variety of visual 
 ## Architecture Diagram:
 ![Architecture](images/ComputerVisionArchitecture.png) <br />
 
+-------------------------------------------------------------------
 ##Application Tech Stack
 - JAVA
 - Spring Boot
 - Gradle
-
-## Application Swagger link
-[Computer Vision Api Swagger link](http://137.184.143.79:8080/computer-vision-api/swagger-ui/index.html) <br />
-
-<details>
-  <summary>Click to expand!</summary>
-
-![swagger page](images/img.png)
-
-</details>
 
 ## API Reference
 #### Get Optical character recognition for Image
@@ -71,7 +62,23 @@ The Computer Vision Image Analysis service can extract a wide variety of visual 
 | :-------- | :------- | :------------------------- |
 | `file` | `file` | **Required**. Your Image File |
 
-## Run Locally
+## How to use API
+- Command line (example: curl -X 'GET' \
+  'http://137.184.143.79:8080/computer-vision-api/analyzeImageWithPath?imagePath=<imagepath>')
+- Swagger Interface <details><summary>Click to expand!</summary> ![swagger page](images/img.png) </details>
+- Postman App <details><summary>Click to expand!</summary> ![postman](images/postman.png) </details>
+
+## Application Swagger link
+[Computer Vision Api Swagger link](http://137.184.143.79:8080/computer-vision-api/swagger-ui/index.html) <br />
+
+<details>
+  <summary>Click to expand!</summary>
+
+![swagger page](images/img.png)
+
+</details>
+
+## Run Application Locally
 Clone the project
 ```bash
   git clone https://github.com/sbidikar/ComputerVisionApi.git
@@ -87,8 +94,10 @@ Start the server
 ```
 
 ## Troubleshooting & FAQ
-If Java is Not installed on system </br>
-[Install Java](https://www.java.com/en/download/help/download_options.html)
+- If Java is Not installed on system </br>
+[Install Java](https://www.java.com/en/download/help/download_options.html) <br />
+- To install Postman to test application follow link below </br>
+[Postman](https://www.postman.com/downloads/)
 
 ## Authors
 
