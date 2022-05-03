@@ -24,13 +24,13 @@ public class OCRService {
 
     public ResponseEntity ocr(String imagePath, MultipartFile file){
         // Create an authenticated Computer Vision client.
-        ComputerVisionClient compVisClient = Authenticate(subscriptionKey, endpoint);
+        ComputerVisionClient compVisClient = authenticate(subscriptionKey, endpoint);
 
         // Read from remote image
-        return ReadFromUrl(compVisClient, imagePath, file);
+        return readFromUrl(compVisClient, imagePath, file);
     }
 
-    public static ComputerVisionClient Authenticate(String subscriptionKey, String endpoint){
+    public ComputerVisionClient authenticate(String subscriptionKey, String endpoint){
         return ComputerVisionManager.authenticate(subscriptionKey).withEndpoint(endpoint);
     }
 
@@ -39,10 +39,10 @@ public class OCRService {
      * @param client instantiated vision client
      * @param imagePath
      */
-    private ResponseEntity ReadFromUrl(ComputerVisionClient client, String imagePath, MultipartFile file) {
+    private ResponseEntity readFromUrl(ComputerVisionClient client, String imagePath, MultipartFile file) {
 
         //String remoteTextImageURL = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/printed_text.jpg";
-        System.out.println("Read with URL: " + imagePath);
+        //System.out.println("Read with URL: " + imagePath);
 
         try {
             // Cast Computer Vision to its implementation to expose the required methods
