@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class ImageAnalysisService {
 
-    @Value("${subscriptionKey}")
+    @Value("${computervision.subscriptionKey}")
     private String subscriptionKey;
     @Value("${computervision.endpoint}")
     private String endpoint;

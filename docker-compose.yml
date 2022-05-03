@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  spring-boot:
+    image: 'computervisionapi:latest'
+    ports:
+      - "8080:8080"
+    secrets:
+      - source: subscriptionKey
+
+secrets:
+  subscriptionKey:
+    external: true
